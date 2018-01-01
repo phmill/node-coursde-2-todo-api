@@ -6,7 +6,7 @@ const {User} = require('./../server/models/user');
 
 // var id = '5a4a99a2b5e2510af808b3431';
 
-// if(!ObjectID.isValid(id)) {
+// if (!ObjectID.isValid(id)) {
 //     console.log('ID not valid.');
 // }
 
