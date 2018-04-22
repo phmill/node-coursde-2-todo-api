@@ -103,9 +103,11 @@ app.patch('/todos/:id', (req, res) => {
 
 // POST /users
 app.post('/users', (req, res) => {
-    // console.log(req.body);
+    console.log(req.body);
     var body = _.pick(req.body, ['email', 'password']);
+    console.log(body);
     var user = new User(body);
+    console.log(user);
 
     user.save().then(() => {
         return user.generateAuthToken();
@@ -130,6 +132,14 @@ app.post('/users/login', (req, res) => {
     }).catch((e) => {
         res.status(400).send();
     });
+});
+
+app.delete('/users/me/token', authenticate, (req, res) => {
+    req.user.removeToken(req.token).then (() => {
+        res.status(200).send();
+    }, () => {
+        res.status(400).send();
+    })
 });
 
 app.listen(port, () => {
